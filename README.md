@@ -30,12 +30,12 @@ SUBNETING
 
 <tr><td colspan="6">RECURSOS:
     <ul>
-        <li>[https://www.w3schools.com/nodejs/nodejs_intro.asp](https://drive.google.com/file/d/15MyPhQt9gvHT1a6LxoHExgN79cz7yZ0e/view)</li>
-        <li>[https://drive.google.com/file/d/16gzYamgXPApvWk545Az4XlIZfV1W-qP-/view)](https://www.howtogeek.com/823503/find-subnet-masks-on-linux-ipcalc/)</li>
-        <li>[https://nodejs.org/en/docs/guides/getting-started-guide/](https://drive.google.com/drive/folders/1YYM8IIoMMiRrhdIaKH90kgFJp3Q-buAr?usp=sharing)</li>
-        <li>https://refactoring.guru/es/design-patterns/memento)</li>
-        <li>https://www.youtube.com/watch?v=VCZK62hXz3E</li>
-        <li>https://github.com/mitocode21/patrones-diseno/tree/master/Memento</li>
+        <li>https://drive.google.com/file/d/15MyPhQt9gvHT1a6LxoHExgN79cz7yZ0e/view</li>
+        <li>https://www.howtogeek.com/823503/find-subnet-masks-on-linux-ipcalc/</li>
+        <li>https://drive.google.com/drive/folders/1YYM8IIoMMiRrhdIaKH90kgFJp3Q-buAr?usp=sharing</li>
+        <li></li>
+        <li></li>
+        <li></li>
     </ul>
 </td>
 </<tr>
