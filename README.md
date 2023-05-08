@@ -39,7 +39,7 @@ SUBNETING
 </<tr>
 <tr><td colspan="6">DOCENTE:
 <ul>
-<li>Richart Smith Escobedo Quispe  - r.escobedo@ulasalle.edu.pe</li>
+<li>RICHART SMITH ESCOBEDO QUISPE - r.escobedo@ulasalle.edu.pe</li>
 </ul>
 </td>
 </<tr>
@@ -49,7 +49,7 @@ SUBNETING
 </<tr>
 <tr><td colspan="6">ALUMNO:
 <ul>
-<li>Guillermo Jhozua Caceres Rosado  - gcaceresr@ulasalle.edu.pe</li>
+<li>PEDRO HUMBERTO RONDON PONCE  - prondonp@ulasalle.edu.pe</li>
 </ul>
 </td>
 </<tr>
@@ -62,67 +62,72 @@ SUBNETING
 
 ### OBJETIVOS
 
--   Aprender y comprender el patron de diseño designado.
--   Llegar a programar satisfactoriamente el patron en el lenguaje designado.
+-   Aprender la logica y los principales conceptos de Subneting.
+-   Comprender la técnica de subdividir una gran red IP física en varias redes lógicas más pequeñas.
+-   Implementar adecuadamente Subneting.
 
 ### TEMAS
--   Reestauracion de estados
--   Comprension del funcionamiento
--   Programación en C++ y Java
+-   Introduccion
+-   Conceptos Principales
+-   Implementacion en Python
 
 ## CONTENIDO DE LA GUÍA
 
-### MARCO CONCEPTUAL
-
--   https://www.w3schools.com/nodejs/nodejs_intro.asp](https://www.w3schools.com/nodejs/nodejs_intro.asp]
--   https://nodejs.org/en/docs/guides/getting-started-guide/](https://refactoring.guru/es/design-patterns/memento/cpp/example)
--   https://nodejs.dev/learn](https://reactiveprogramming.io/blog/es/patrones-de-diseno/memento)
--   https://www.w3schools.com/js/js_api_fetch.asp]
--   http://joaquin.medina.name/web2008/documentos/informatica/documentacion/logica/patrones/patronMemento/2008_08_12_MementoDescripcion.html)
--   https://drive.google.com/file/d/16gzYamgXPApvWk545Az4XlIZfV1W-qP-/view
--   https://reactiveprogramming.io/blog/es/patrones-de-diseno/memento
 
 # INTRODUCCION
 
-El patron de diseño Memento nos permite capturar varios estados con su fecha y hora actuales, para poder volver a ellos mas tarde. Este patrón es utilizado cuando tenemos objetos que cambian en el tiempo y por alguna razón necesitamos restaurar su estado en un momento determinado. 
+El Subnetting o subneteo es la técnica de subdividir una gran red IP física en varias redes lógicas más pequeñas, de forma que cada una de estas subnets funcionen como una red individual respecto a envíos y recepción de paquetes, aunque sigan perteneciendo a una misma red principal y a un mismo dominio. Este proceso debe ser realizado cuidadosamente, para así no desaprovechar direcciones IPv4.
 
-Un ejemplo claro seria un documento de texto como Word, documentos de google y overleaf. Cada vez que escribimos una letra en el documento de texto se guarda un nuevo estado en el documento, el cual nos permite volver a los estados anteriores guardados o salvados, retrocediendo o adelantando los cambios que hemos hecho.  
+Es un procedimiento que permite dividir a una red primaria IPv4 en una serie de subredes, de tal forma que cada una de ellas funcione a nivel de envío y recepción de paquetes, como una red individual, aunque todas pertenezcan a la misma red principal y, por lo tanto, al mismo dominio de difusión original. El proceso de subnetting implica la asignación de bits adicionales a la parte de red de la dirección IP, lo que permite una mayor cantidad de subredes y direcciones IP disponibles. Es importante entender los fundamentos del subnetting para diseñar, configurar y mantener redes informáticas eficientes y seguras.
 
 
 ![image](https://user-images.githubusercontent.com/74481155/175861611-ea4ae59f-fd34-4ca2-96e6-be57ad5b2e61.png)
 
+# Conceptos principales
 
-Aparte de este ejemplo tambien se utilizan en las actualizaciones de sistema o en un caso mas conocido los video juegos.
+## Broadcast
+También conocido como transmisión o radiodifusión, el broadcast se define como el mensaje transmitido a los integrantes de una red, sin necesidad de retroalimentación. Esta conexión multipunto de una red informática, se encarga de transmitir un paquete de datos a todos los miembros de una red de comunicación, mediante el uso de una dirección de Broadcast.
 
-Viendolo mas a fondo el patrón Memento se encarga de la creación de capturas instantaneas de estados al propietario de esos estados, el objeto "originador". Por lo tanto, en lugar de que haya otros objetos o usuario intentando copear informacion del originador, la propia clase que edita los datos puede hacerlo, ya que tiene pleno acceso a su propio estado y son los que registra todos los estados ya sea del originador o creador.
+## Dirección IP
+El término dirección IP o dirección de protocolo de internet hace referencia a una representación numérica de la ubicación de un dispositivo en internet o una red local. Funciona como identificador de un dispositivo, y permite el envío de información entre equipos en una red.
 
-El patrón sugiere almacenar la copia del estado del objeto en un objeto especial llamado memento (recuerdo). Los contenidos del memento no son accesibles para ningún otro objeto excepto el que lo produjo o lo creo. Otros objetos deben comunicarse con mementos utilizando una interfaz limitada que pueda permitir extraer los metadatos de la instantánea (tiempo de creación, el nombre de la operación realizada, etc.), pero no el estado del objeto original contenido en la instantánea.
+## Tipos de IPv4
+En la cuarta versión del protocolo de internet, se puede identificar 3 tipos de direcciones IP que se encargan (cada una) del cumplimiento de una tarea específica, siendo estas:
+
+- Direccion Broadcast
+Es la última dirección IP dentro de una subred y permite la transmisión de datos a una multitud de nodos receptores que hacen parte de una misma subred.
+
+- Dirección de red
+Es la dirección IP a la que se refiere la red o subred. La dirección de red incluye routers en sus tablas de enrutamiento para que puedan llegar a un destino establecido y para poder conocer el origen de un paquete.
+
+- Dirección de Host
+Son las direcciones IP (subnetting ip) que se le asignan a los equipos finales de la red y es usada para identificar a un dispositivo particular que esté conectado a la red.
+
+## Subred
+Es un rango de direcciones lógica usada para maximizar el espacio de direcciones IPv4. Permiten asignar parte del espacio de la dirección host a las direcciones de red, lo que hace posible que se tengan más redes. A ese espacio de dirección de host asignada a las nuevas direcciones se le denomina número de subred.
+
+## Dirección de subred
+Una dirección de subred es utilizada para comparar la dirección del destino de un mensaje con la dirección del sistema principal de origen de este, con el objetivo de establecer si el destino está ubicado en la misma dirección que el origen, o si es posible llegar al destino mediante alguna de las interfaces locales.
 
 
 ![image](https://user-images.githubusercontent.com/74481155/176829962-fbf3fb9f-714c-460a-b244-03dca761e83f.png)
 
-Los elementos que conforman la grafica son:
 
- - Memento, almacena/guarda el estado de un objeto del originador/creador, el puede pasarse informacion con la aplicacion para pasarlo a los objetos y al originador/creador para guardar o recordar su estado.
- - Originador, crea al objeot memento para guardar su estado actual o volver al anterior.
- - Aplicacion, mantiene los objetos de memento y originador pero no puede acceder a la informacion para verla o modificarla.
 
-# USOS
+# Aplicacion
 
-- Se usa para salvar el estado en calculos que demoran mucho tiempo en realizar.
-- En videojuegos para autoguardarse
-- Cuando necesitamos salvar/restaurar el estado de algun objeto o forma.
-- Cuando no se desea mostrar el estado directamente.
+- Gestión de direcciones IP: El subnetting permite a los administradores de red asignar direcciones IP de manera más eficiente y        controlar el número de dispositivos en una red.
 
-# PATRONES RELACIONADOS
+- Segmentación de redes: El subnetting ayuda a dividir grandes redes en segmentos más pequeños, lo que mejora la eficiencia de la red y reduce la congestión.
 
-- Command, este patron utiliza al memento para guardar estados de acciones que no se pueden modificar o hacer
-- State, la mayoria de lo estados utilizan el patron memento.
+- Mejora de la seguridad: El subnetting permite a los administradores de red aislar segmentos de la red y aplicar políticas de seguridad específicas a cada subred.
 
-#
-#
+- Optimización del tráfico: El subnetting permite a los administradores de red configurar diferentes políticas de enrutamiento para diferentes subredes, lo que mejora la eficiencia de la red y reduce la congestión.
 
-## EJEMPLO SIMPLE
+- Mejora de la gestión de redes: El subnetting facilita la gestión y el monitoreo de redes informáticas, lo que permite a los administradores de red detectar y solucionar problemas de manera más eficiente.
+
+
+# Implementacion
 
 - Se agrega la clase Originator/Creador llamado "EmpleadosDatos", donde se encuentran propiedades del estado con metodos set y get. Aparte se agrera el "import java.io*" para poder imprimir un argumento que va pasando.
 
