@@ -286,7 +286,7 @@ La implementación incorrecta del subnetting puede resultar en problemas de red,
 # PARTE 3 
 ## SKILLS FOR ALL CISCO:
 
-https://github.com/prondonp/Redes_Subnetting/blob/9ee68e37f3c0fde594f5a388550c5c169b9793e1/skillsforallcisco.png
+![image](https://github.com/prondonp/Redes_Subnetting/blob/9ee68e37f3c0fde594f5a388550c5c169b9793e1/skillsforallcisco.png)
 
 #
 
