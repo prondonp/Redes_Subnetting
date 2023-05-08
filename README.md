@@ -81,8 +81,6 @@ El Subnetting o subneteo es la técnica de subdividir una gran red IP física en
 Es un procedimiento que permite dividir a una red primaria IPv4 en una serie de subredes, de tal forma que cada una de ellas funcione a nivel de envío y recepción de paquetes, como una red individual, aunque todas pertenezcan a la misma red principal y, por lo tanto, al mismo dominio de difusión original. El proceso de subnetting implica la asignación de bits adicionales a la parte de red de la dirección IP, lo que permite una mayor cantidad de subredes y direcciones IP disponibles. Es importante entender los fundamentos del subnetting para diseñar, configurar y mantener redes informáticas eficientes y seguras.
 
 
-![image](https://user-images.githubusercontent.com/74481155/175861611-ea4ae59f-fd34-4ca2-96e6-be57ad5b2e61.png)
-
 # Conceptos principales
 
 ## Broadcast
@@ -110,9 +108,6 @@ Es un rango de direcciones lógica usada para maximizar el espacio de direccione
 Una dirección de subred es utilizada para comparar la dirección del destino de un mensaje con la dirección del sistema principal de origen de este, con el objetivo de establecer si el destino está ubicado en la misma dirección que el origen, o si es posible llegar al destino mediante alguna de las interfaces locales.
 
 
-![image](https://user-images.githubusercontent.com/74481155/176829962-fbf3fb9f-714c-460a-b244-03dca761e83f.png)
-
-
 
 # Aplicacion
 
@@ -129,25 +124,26 @@ Una dirección de subred es utilizada para comparar la dirección del destino de
 
 # Implementacion
 
-- La primera línea importa las librerías "ipaddress" y "prettytable" que se necesitan para trabajar con direcciones IP y mostrar la información de red en una tabla.
+- Importa las librerías "ipaddress" y "prettytable" que se necesitan para trabajar con direcciones IP y mostrar la información de red en una tabla.
  ```
 import ipaddress
 from prettytable import PrettyTable
  ```
-- La segunda y tercera línea solicita al usuario que ingrese la dirección IP y la cantidad de subredes que desea crear.
+- Solicita al usuario que ingrese la dirección IP y la cantidad de subredes que desea crear.
  ```
 ip = input("Ingrese una dirección IP: ")
 num_subnets = int(input("Ingrese la cantidad de subredes: "))
  ```
-- La cuarta línea convierte la dirección IP ingresada por el usuario en un objeto de tipo "IPv4Address" para poder trabajar con ella.
+- Convierte la dirección IP ingresada por el usuario en un objeto de tipo "IPv4Address" para poder trabajar con ella. Crea un objeto de tipo "IPv4Address" a partir de la dirección IP ingresada por el usuario y lo asigna a la variable "ip_addr".
  ```
 ip_addr = ipaddress.IPv4Address(ip)
-
-- La quinta línea obtiene la máscara de red correspondiente a la dirección IP ingresada.
-
+ ```
+- La quinta línea obtiene la máscara de red correspondiente a la dirección IP ingresada. Se utiliza la dirección IP ingresada por el usuario (almacenada en la variable "ip_addr") junto con una máscara de red de longitud 24 (que se especifica agregando "/24" al final de la dirección IP) para crear un objeto de tipo "IPv4Network" que representa la red correspondiente. La opción "strict=False" se utiliza para permitir que la dirección IP ingresada no esté en formato de red (por ejemplo, "192.168.0.1" en lugar de "192.168.0.0/24").
+El objeto "IPv4Network" creado se almacena en la variable "network", lo que permite utilizarlo para calcular la información de red y las subredes correspondientes.
+```
 network = ipaddress.IPv4Network(str(ip_addr) + '/24', strict=False)
  ```
-- Las líneas 7-14 determinan la clase de la red y calculan la información de red.
+- Determinan la clase de la red y calculan la información de red. Wildcard se utiliza para almacenar la máscara inversa (también conocida como wildcard) de la red. La máscara inversa se utiliza en la configuración de redes para indicar qué bits de la dirección IP no están cubiertos por la máscara de red. Se obtiene a través del atributo "hostmask" del objeto "IPv4Network". network_address se utiliza para almacenar la dirección de red de la red. La dirección de red es la dirección IP que se utiliza para identificar la red en la que se encuentra un dispositivo o host. Se obtiene a través del atributo "network_address" del objeto "IPv4Network".
  ```
 wildcard = network.hostmask
 network_address = network.network_address
@@ -161,25 +157,25 @@ elif network.is_global:
 else:
     network_class = "Desconocida"
   ```   
-- Las líneas 16-20 calculan la cantidad de bits necesarios para la cantidad de subredes y la cantidad de bits disponibles para los hosts.
+- Calculan la cantidad de bits necesarios para la cantidad de subredes y la cantidad de bits disponibles para los hosts. prefixlen representa la longitud del prefijo de red (en bits) para la dirección IP de la red. El prefijo de red es una parte de la dirección IP que se utiliza para identificar la red y se representa mediante una máscara de subred siendo en este caso /24.
  ```
 bits_needed = (num_subnets - 1).bit_length()
 
 bits_available = 32 - network.prefixlen - bits_needed
-
-- La línea 23 valida que haya suficientes bits disponibles para los hosts.
-
+ ```
+- Valida que haya suficientes bits disponibles para los hosts.
+ ```
 if bits_available < 0:
     print("No hay suficientes bits disponibles para la cantidad de subredes solicitadas.")
  ```
-- Las líneas 26-31 obtienen la lista de subredes y hosts por subred y crea una tabla para mostrar los resultados.
+- Obtienen la lista de subredes y hosts por subred y crea una tabla para mostrar los resultados. prefixlen_diff se utiliza para especificar la cantidad de bits adicionales que se necesitan para definir el prefijo de red de cada subred
  ```
 else:
     # Obtener la lista de subredes y hosts por subred
     subnets = list(network.subnets(prefixlen_diff=bits_needed))
     hosts_per_subnet = 2**bits_available - 2
  ```
-- Las líneas 34-40 agregan filas a la tabla con la información de cada subred, incluyendo la dirección de red, el rango de direcciones IP disponibles para los hosts y la dirección de broadcast.
+- Agregan filas a la tabla con la información de cada subred, incluyendo la dirección de red, el rango de direcciones IP disponibles para los hosts y la dirección de broadcast.
  ```
  table = PrettyTable()
     table.field_names = ["Subred", "Dirección de red", "Rango de direcciones IP para hosts", "Dirección de broadcast"]
@@ -187,7 +183,7 @@ else:
         row = [f"Subred {i+1}", str(subnet.network_address), f"{subnet.network_address+1} - {subnet.broadcast_address-1}", str(subnet.broadcast_address)]
         table.add_row(row)
   ```
-- La línea 43 muestra la información general de la red y la tabla con los detalles de cada subred.
+- Muestra la información general de la red y la tabla con los detalles de cada subred.
  ```
   print("Dirección IP: ", ip)
     print("Máscara de red: ", network.netmask)
@@ -210,40 +206,18 @@ else:
 
 ## CONCLUSIONES
 
-### FAVORABLE
+El uso de subnetting es esencial en la administración de redes y permite la división de una red grande en varias subredes más pequeñas y manejables. Al dividir una red grande en subredes más pequeñas, se pueden reducir el tráfico de red, mejorar el rendimiento y aumentar la seguridad al limitar el número de hosts en una red. También ayuda a optimizar la asignación de direcciones IP y hace que la administración de direcciones IP sea más eficiente.
 
--  Puedes producir capturas de los estados del objeto sin atravesar su encapsulación.
--  Puedes simplificar el código del originador/creador permitiendo que la cuidadora/alamacen mantenga el historial del estado del originador/creador.
+La implementación incorrecta del subnetting puede resultar en problemas de red, como la sobrecarga del router o la falta de direcciones IP disponibles. Por lo tanto, es importante entender bien cómo funciona el subnetting y cómo se debe implementar correctamente. En general, el subnetting es una herramienta poderosa para mejorar la gestión de redes, siempre y cuando se implemente adecuadamente y se tenga en cuenta su impacto en el rendimiento y la seguridad de la red.
 
-### DESFAVORABLE
-
--  La aplicación puede consumir mucha memoria RAM si los clientes crean mementos muy a menudo y no tienen en cuenta su consumo excesivo.
--  El cuidador/alamacen deben seguir el ciclo de vida del originador/creador para poder destruir mementos obsoletos.
--  La mayoría de los lenguajes de programación dinámicos, como PHP, Python y JavaScript, no pueden garantizar que el estado dentro del memento se mantenga intacto ya que aveces puede resultar modificaciones.
-
-## CONSECUENCIAS
-
-El patrón Memento tiene varias consecuencias:
-
--  Preservación de los límites de la encapsulación. El elemento se mantiene guardado asi evitando que todos los objetos o participantes del programa puedan ver o modificar la informacion guardad en el memento.
--  Simplifica al Creador. Se conserva la encapsulacion y el creador/originador mantiene sus estados solicitados por el usuario. 
--  El uso de mementos puede ser costoso. Los mementos producen un costo considerable cuando el creador/originador recibe mucha informacion por para recordar de los usuarios.
--  Definición de interfaces reducidas y amplias. En algunos lenguajes puede ser difícil garantizar que sólo el creador acceda al estado del memento.
--  Costes ocultos en el cuidado de los mementos. 
-
-#
 
 ## REFERENCIAS
 
--   https://www.w3schools.com/nodejs/nodejs_intro.asp](https://www.w3schools.com/nodejs/nodejs_intro.asp]
--   https://nodejs.org/en/docs/guides/getting-started-guide/](https://refactoring.guru/es/design-patterns/memento/cpp/example)
--   https://nodejs.dev/learn](https://reactiveprogramming.io/blog/es/patrones-de-diseno/memento)
--   https://www.w3schools.com/js/js_api_fetch.asp]
--   http://joaquin.medina.name/web2008/documentos/informatica/documentacion/logica/patrones/patronMemento/2008_08_12_MementoDescripcion.html)
--   https://drive.google.com/file/d/16gzYamgXPApvWk545Az4XlIZfV1W-qP-/view
--   https://reactiveprogramming.io/blog/es/patrones-de-diseno/memento
--   https://www.youtube.com/watch?v=VCZK62hXz3E
--   https://github.com/mitocode21/patrones-diseno/tree/master/Memento
+-   https://www.ionos.es/digitalguide/servidores/know-how/subnetting-como-funcionan-las-subredes/
+-   https://platzi.com/tutoriales/1277-redes-2017/9070-subnetting-que-es-y-como-funciona/
+-   https://keepcoding.io/blog/que-es-subnetting/#:~:text=El%20Subnetting%20o%20subneteo%20es,principal%20y%20a%20un%20mismo%20dominio.
+-   https://drive.google.com/file/d/15MyPhQt9gvHT1a6LxoHExgN79cz7yZ0e/view
+-   https://es.wikipedia.org/wiki/Subred
 
 #
 
