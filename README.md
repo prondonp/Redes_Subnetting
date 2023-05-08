@@ -33,10 +33,8 @@ SUBNETING
         <li>https://drive.google.com/file/d/15MyPhQt9gvHT1a6LxoHExgN79cz7yZ0e/view</li>
         <li>https://www.howtogeek.com/823503/find-subnet-masks-on-linux-ipcalc/</li>
         <li>https://drive.google.com/drive/folders/1YYM8IIoMMiRrhdIaKH90kgFJp3Q-buAr?usp=sharing</li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
+        <li>https://keepcoding.io/blog/que-es-subnetting/#:~:text=El%20Subnetting%20o%20subneteo%20es,principal%20y%20a%20un%20mismo%20dominio.</li>
+        </ul>
 </td>
 </<tr>
 <tr><td colspan="6">DOCENTE:
