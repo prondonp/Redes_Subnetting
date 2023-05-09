@@ -288,6 +288,9 @@ La implementación incorrecta del subnetting puede resultar en problemas de red,
 
 ![image](https://github.com/prondonp/Redes_Subnetting/blob/d760e5dfbf1617a156b39e52f6acf3418003823a/Parte2C.png)
 
+ <ul>
+        <li>https://github.com/prondonp/Redes_Subnetting/blob/8d5faab9263aac234552415508ee8c100407e879/PSR4.pkt</li>
+        </ul>
 #
 
 #
