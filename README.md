@@ -283,6 +283,14 @@ La implementación incorrecta del subnetting puede resultar en problemas de red,
 
 #
 
+# PARTE 2
+## Modelamiento y simulación en Cisco Packet Tracer.
+
+
+
+#
+
+#
 # PARTE 3 
 ## SKILLS FOR ALL CISCO:
 
